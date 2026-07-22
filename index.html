@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vijendra Pokharkar — Data Scientist / ML Engineer / GenAI Engineer</title>
+<meta name="description" content="Portfolio of Vijendra Pokharkar — Data Science & AI projects built during a 75-day roadmap: Titanic ML app, NLP classifier, RAG assistant, and a production ML service.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0F17;
+    --panel:#121926;
+    --panel-2:#0F1520;
+    --line:#22303F;
+    --text:#E7ECF2;
+    --muted:#8C99AB;
+    --amber:#E3A23C;
+    --steel:#5FA8D3;
+    --good:#63C6A0;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--steel); text-decoration:none;}
+  a:hover{color:var(--amber);}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  section{padding:72px 0;}
+  h1,h2,h3{font-family:var(--sans); font-weight:800; letter-spacing:-0.02em;}
+  code, .mono{font-family:var(--mono);}
+
+  /* ===== HEADER / TERMINAL HERO ===== */
+  header{padding:96px 0 64px; border-bottom:1px solid var(--line);}
+  .name{font-size:44px; line-height:1.15; margin-bottom:6px;}
+  .role{font-size:17px; color:var(--muted); margin-bottom:36px; max-width:560px;}
+  .role strong{color:var(--text); font-weight:600;}
+
+  .terminal{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    max-width:640px;
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 14px;
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+  }
+  .dot{width:9px; height:9px; border-radius:50%; background:#3A4657;}
+  .terminal-title{
+    font-family:var(--mono); font-size:11.5px; color:var(--muted);
+    margin-left:6px;
+  }
+  .terminal-body{padding:18px 20px; font-family:var(--mono); font-size:13.5px;}
+  .term-line{color:var(--muted); margin-bottom:10px;}
+  .term-line .prompt{color:var(--good);}
+  .term-out{color:var(--text); margin-bottom:4px;}
+  .bar-track{
+    display:inline-block; color:var(--line); letter-spacing:0;
+  }
+  .bar-fill{color:var(--amber);}
+  .term-status{color:var(--muted); margin-top:10px; font-size:12.5px;}
+  .term-status .live{color:var(--good);}
+  .cursor{
+    display:inline-block; width:7px; height:14px; background:var(--amber);
+    vertical-align:middle; margin-left:2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cursor{animation:none; opacity:0.6;}
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero-links{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; font-family:var(--mono); font-size:13px;}
+  .hero-links a{
+    border:1px solid var(--line); padding:8px 14px; border-radius:6px; color:var(--text);
+  }
+  .hero-links a:hover{border-color:var(--amber); color:var(--amber);}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid; grid-template-columns: 1.3fr 1fr; gap:48px;}
+  .about-grid p{color:var(--muted); margin-bottom:14px; max-width:56ch;}
+  .about-grid p strong{color:var(--text); font-weight:600;}
+  .facts{border-left:2px solid var(--line); padding-left:20px;}
+  .fact{margin-bottom:18px;}
+  .fact-label{font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); margin-bottom:3px;}
+  .fact-value{font-size:14.5px; color:var(--text);}
+  @media (max-width:720px){ .about-grid{grid-template-columns:1fr; gap:32px;} }
+
+  /* ===== PROJECTS ===== */
+  h2{font-size:26px; margin-bottom:8px;}
+  .section-sub{color:var(--muted); margin-bottom:36px; font-size:15px; max-width:60ch;}
+
+  .projects{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:720px){ .projects{grid-template-columns:1fr;} }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:24px;
+    display:flex; flex-direction:column;
+  }
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;}
+  .card-title{font-size:17px; font-weight:700;}
+  .badge{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em;
+    padding:3px 8px; border-radius:20px; white-space:nowrap;
+    border:1px solid var(--line); color:var(--muted);
+  }
+  .badge.live{color:var(--good); border-color:rgba(99,198,160,0.4);}
+  .card-desc{color:var(--muted); font-size:13.8px; margin-bottom:14px; flex-grow:1;}
+  .card-metric{
+    font-family:var(--mono); font-size:12.5px; color:var(--amber);
+    margin-bottom:14px;
+  }
+  .stack{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;}
+  .stack span{
+    font-family:var(--mono); font-size:11px; color:var(--muted);
+    background:var(--panel-2); border:1px solid var(--line);
+    padding:3px 8px; border-radius:5px;
+  }
+  .card-links{display:flex; gap:16px; font-family:var(--mono); font-size:12.5px; border-top:1px solid var(--line); padding-top:14px;}
+
+  /* ===== JOURNEY / PHASES ===== */
+  .phases{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  .phase{display:grid; grid-template-columns:56px 1fr 100px; gap:14px; align-items:center; padding:14px 18px; border-bottom:1px solid var(--line);}
+  .phase:last-child{border-bottom:none;}
+  .phase-num{font-family:var(--mono); color:var(--muted); font-size:13px;}
+  .phase-name{font-size:14.5px;}
+  .phase-name span{display:block; color:var(--muted); font-size:12px; margin-top:2px;}
+  .phase-status{font-family:var(--mono); font-size:11.5px; text-align:right;}
+  .phase-status.done{color:var(--good);}
+  .phase-status.wip{color:var(--amber);}
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--line); padding:48px 0; }
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-links{display:flex; gap:22px; font-family:var(--mono); font-size:13px;}
+  .footer-note{color:var(--muted); font-size:12.5px; font-family:var(--mono);}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="eyebrow">Data Science &amp; AI</div>
+  <h1 class="name">Vijendra Pokharkar</h1>
+  <div class="role">Building toward <strong>Data Scientist</strong>, <strong>ML Engineer</strong> and <strong>GenAI Engineer</strong> roles — MSc Data Science, 4 years as a Business Analyst, now shipping full-stack ML systems one day at a time.</div>
+
+  <div class="terminal" role="img" aria-label="Terminal showing roadmap status: Day 71 of 75, Phase 6 Portfolio Polish in progress, 4 of 4 projects shipped">
+    <div class="terminal-bar">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="terminal-title">roadmap-status.sh</div>
+    </div>
+    <div class="terminal-body">
+      <div class="term-line"><span class="prompt">$</span> ./status --roadmap DS-AI-75D</div>
+      <div class="term-out">Day 71<span style="color:var(--muted)">/75</span> &nbsp; <span class="bar-track">[<span class="bar-fill">█████████████████████████</span><span style="color:var(--line)">░░░░</span>]</span></div>
+      <div class="term-out">Phase 6 — Portfolio Polish &amp; Job Hunt</div>
+      <div class="term-status">projects_shipped: <span class="live">4/4</span> &middot; live_demos: <span class="live">3 running</span> &middot; status: <span class="live">in_progress</span><span class="cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="hero-links">
+    <a href="https://github.com/vijendrapokharkar15-design" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://huggingface.co/VijendraHuggingface" target="_blank" rel="noopener">Hugging Face</a>
+    <a href="https://linkedin.com/in/vijendrapokharkar" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/vijendrapokharkar15-design/DS-AI-75D" target="_blank" rel="noopener">75-Day Roadmap →</a>
+  </div>
+</header>
+
+<section class="wrap" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:10px;">About</div>
+      <p>I spent four years as a <strong>Business Analyst</strong> before deciding the analysis I found most interesting was the kind I could build, not just report on. An <strong>MSc in Data Science</strong> from the University of Westminster followed — and now a self-directed 75-day sprint turning that into shipped, working systems.</p>
+      <p>The projects below aren't tutorials. Each one is trained, evaluated, wrapped in a real API or interface, and deployed somewhere you can actually open it right now.</p>
+    </div>
+    <div class="facts">
+      <div class="fact">
+        <div class="fact-label">Background</div>
+        <div class="fact-value">MSc Data Science, University of Westminster</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Experience</div>
+        <div class="fact-value">4 years, Business Analyst</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Based in</div>
+        <div class="fact-value">Pune, India</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label">Targeting</div>
+        <div class="fact-value">Data Scientist / ML Engineer / GenAI Engineer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="projects">
+  <h2>Shipped Projects</h2>
+  <div class="section-sub">Four systems built across the roadmap — from a classic ML app to a full RAG pipeline and a monitored production service.</div>
+
+  <div class="projects">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">AI-Powered RAG Assistant</div>
+        <div class="badge live">● live</div>
+      </div>
+      <div class="card-desc">Document Q&amp;A over PDFs and URLs — semantic retrieval with ChromaDB, streamed answers from Claude with inline source citations.</div>
+      <div class="card-metric">chunked retrieval · cited answers</div>
+      <div class="stack"><span>ChromaDB</span><span>sentence-transformers</span><span>Claude Haiku</span><span>Gradio</span></div>
+      <div class="card-links">
+        <a href="https://huggingface.co/spaces/VijendraHuggingface/rag-assistant" target="_blank" rel="noopener">Live app →</a>
+        <a href="https://github.com/vijendrapokharkar15-design/DS-AI-75D/tree/main/.vscode/week09/day63_rag_assistant" target="_blank" rel="noopener">Code →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Production ML Service</div>
+        <div class="badge">docker / local</div>
+      </div>
+      <div class="card-desc">MLflow-tracked model served via FastAPI with health, metrics and live drift-monitoring endpoints — CI/CD enforced on every push.</div>
+      <div class="card-metric">AUC 0.9635 · 97.5% accuracy</div>
+      <div class="stack"><span>MLflow</span><span>FastAPI</span><span>Evidently AI</span><span>GitHub Actions</span></div>
+      <div class="card-links">
+        <a href="https://github.com/vijendrapokharkar15-design/DS-AI-75D/tree/main/.vscode/week10/ml_service" target="_blank" rel="noopener">Code →</a>
+        <a href="https://github.com/vijendrapokharkar15-design/DS-AI-75D/actions/workflows/ml_pipeline_ci.yml" target="_blank" rel="noopener">CI pipeline →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">BBC News Classifier</div>
+        <div class="badge live">● live</div>
+      </div>
+      <div class="card-desc">Fine-tuned DistilBERT classifying news into 5 categories, served behind a validated FastAPI endpoint and containerised for deployment.</div>
+      <div class="card-metric">99% test accuracy</div>
+      <div class="stack"><span>DistilBERT</span><span>FastAPI</span><span>Pydantic</span><span>Docker</span></div>
+      <div class="card-links">
+        <a href="https://huggingface.co/spaces/VijendraHuggingface/bbc-news-classifier" target="_blank" rel="noopener">Live API →</a>
+        <a href="https://github.com/vijendrapokharkar15-design/DS-AI-75D/tree/main/.vscode/week07/day49_fastapi_app" target="_blank" rel="noopener">Code →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Titanic Survival Predictor</div>
+        <div class="badge live">● live</div>
+      </div>
+      <div class="card-desc">4-tab Streamlit app — single &amp; batch prediction, model comparison, and per-prediction SHAP explanations, not just a leaderboard score.</div>
+      <div class="card-metric">Test AUC 0.849 · 81.6% accuracy</div>
+      <div class="stack"><span>Random Forest</span><span>SHAP</span><span>Streamlit</span></div>
+      <div class="card-links">
+        <a href="https://vijendrapokharkar15-design-titanic-survival-predicto-app-wbdy2y.streamlit.app" target="_blank" rel="noopener">Live app →</a>
+        <a href="https://github.com/vijendrapokharkar15-design/titanic-survival-predictor" target="_blank" rel="noopener">Repo →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="wrap" id="journey">
+  <h2>The 75-Day Build</h2>
+  <div class="section-sub">Six phases, one continuous public commit history — from NumPy fundamentals to deployed GenAI systems.</div>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="phase-num">01</div>
+      <div class="phase-name">Foundations<span>Python · Pandas · Polars · Statistics · SQL</span></div>
+      <div class="phase-status done">complete</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">02</div>
+      <div class="phase-name">Core ML<span>Scikit-learn · XGBoost · Feature Engineering · SHAP</span></div>
+      <div class="phase-status done">complete</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">03</div>
+      <div class="phase-name">Deep Learning &amp; NLP<span>PyTorch · Transformers · Hugging Face</span></div>
+      <div class="phase-status done">complete</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">04</div>
+      <div class="phase-name">GenAI &amp; LLMs<span>RAG · LangGraph agents · Fine-tuning</span></div>
+      <div class="phase-status done">complete</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">05</div>
+      <div class="phase-name">MLOps<span>Docker · FastAPI · MLflow · Evidently AI</span></div>
+      <div class="phase-status done">complete</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">06</div>
+      <div class="phase-name">Portfolio &amp; Job Hunt<span>GitHub polish · resume · applications</span></div>
+      <div class="phase-status wip">in progress</div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="footer-row">
+    <div class="footer-links">
+      <a href="https://github.com/vijendrapokharkar15-design" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://huggingface.co/VijendraHuggingface" target="_blank" rel="noopener">Hugging Face</a>
+      <a href="https://linkedin.com/in/vijendrapokharkar" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-note">DS-AI-75D · Day 71/75</div>
+  </div>
+</footer>
+
+</body>
+</html>
